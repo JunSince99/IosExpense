@@ -55,26 +55,15 @@ svg{display:block}
 .hero-sub{margin-top:8px;font-size:13.5px;color:var(--ink-2)}
 .hero-sub b{font-weight:600;font-variant-numeric:tabular-nums}
 .good{color:var(--good)}.bad{color:var(--bad)}
-.fold{margin-top:16px;border-radius:16px;background:var(--fill)}
-.fold-head{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:13px 14px;border-radius:16px;text-align:left}
-.fold-head:active{opacity:.7}
-.fold-l{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:var(--ink-2)}
-.fold-ics{display:flex}
-.fold-ics .tile-ic{box-shadow:0 0 0 2px var(--fill)}
-.fold-ics .tile-ic+.tile-ic{margin-left:-6px}
-.fold-r{display:flex;align-items:center;gap:4px;font-size:15px;font-weight:700;font-variant-numeric:tabular-nums}
-.fold-r svg{width:18px;height:18px;color:var(--ink-3);transform:rotate(90deg);transition:transform .25s var(--ease)}
-.fold-head[aria-expanded="true"] .fold-r svg{transform:rotate(-90deg)}
-.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:0 8px 8px}
-.tiles.enter{animation:enter .25s var(--ease)}
-.tile{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:0;padding:12px 14px;border-radius:12px;background:var(--bg);text-align:left;transition:transform .15s}
-button.tile:active{transform:scale(.98)}
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:16px}
+.tile{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:0;padding:12px 14px;border-radius:14px;background:var(--fill);text-align:left;transition:transform .15s}
+button.tile:active{transform:scale(.97)}
 .tile-head{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:500;color:var(--ink-2)}
-.tile-ic{width:22px;height:22px;display:grid;place-items:center;border-radius:50%;background:color-mix(in srgb,var(--c) 18%,var(--bg));color:var(--c)}
+.tile-ic{width:22px;height:22px;display:grid;place-items:center;border-radius:50%;background:color-mix(in srgb,var(--c) 18%,var(--fill));color:var(--c)}
 .tile-ic svg{width:14px;height:14px}
 .tile-val{margin-top:6px;font-size:17px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
 .tile-sub{display:flex;align-items:center;gap:1px;font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums;white-space:nowrap}
-.tile-sub.on{color:var(--good)}
+.tile-sub .on{color:var(--good)}
 .tile-sub svg{width:13px;height:13px}
 .view.enter{animation:enter .28s var(--ease)}
 @keyframes enter{from{opacity:0;transform:translateY(6px)}}
@@ -168,6 +157,22 @@ button.tile:active{transform:scale(.98)}
 .grab span{width:36px;height:5px;border-radius:3px;background:var(--fill-2)}
 .sheet-head{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:34px}
 .sheet-head h2{margin:0;font-size:17px;font-weight:700}
+.chip-btn{display:flex;align-items:center;gap:4px;height:32px;padding:0 12px 0 10px;border-radius:999px;background:var(--fill);font-size:13.5px;font-weight:600}
+.chip-btn svg{width:15px;height:15px}
+.chip-btn:active{background:var(--fill-2)}
+#group{min-height:min(62%,560px)}
+.g-total{font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.2;font-variant-numeric:tabular-nums}
+.g-total small{font-size:20px;font-weight:600;margin-left:2px}
+.g-meta{margin-top:2px;font-size:13px;color:var(--ink-2)}
+.g-rows{display:flex;flex-direction:column;padding:0 14px;border-radius:14px;background:var(--fill)}
+.g-row{display:flex;align-items:center;justify-content:space-between;width:100%;padding-block:12px;font-size:14.5px;font-variant-numeric:tabular-nums}
+.g-row+.g-row{border-top:1px solid var(--fill-2)}
+.g-row>span:first-child{color:var(--ink-2)}
+.g-row>span:last-child{display:flex;align-items:center;gap:2px;font-weight:600}
+.g-row svg{width:16px;height:16px;color:var(--ink-3)}
+button.g-row:active{opacity:.6}
+#gList{display:flex;flex-direction:column}
+.g-empty{padding-block:28px;text-align:center;font-size:14px;color:var(--ink-2)}
 .sheet-note{margin:-6px 0 0;font-size:13.5px;line-height:1.5;color:var(--ink-2)}
 .date{display:flex;align-items:center;gap:2px;padding:2px;border-radius:10px;background:var(--fill)}
 .date button{width:30px;height:30px;display:grid;place-items:center;border-radius:8px}
@@ -253,12 +258,9 @@ button.tile:active{transform:scale(.98)}
     <div class="hero-label" id="heroLabel"></div>
     <div class="hero-total" id="heroTotal"></div>
     <div class="hero-sub" id="heroSub"></div>
-    <div class="fold">
-      <button class="fold-head" id="foldBtn" aria-expanded="false" aria-controls="tiles"></button>
-      <div class="tiles" id="tiles" hidden>
-        <div class="tile" id="tileSub"></div>
-        <button class="tile" id="tileTransit"></button>
-      </div>
+    <div class="tiles">
+      <button class="tile" id="tileSub"></button>
+      <button class="tile" id="tileTransit"></button>
     </div>
   </div>
   <section class="view" id="view-list">
@@ -313,6 +315,18 @@ button.tile:active{transform:scale(.98)}
     <button class="del" id="delBtn" hidden>삭제</button>
     <button class="save" id="saveBtn" disabled>금액을 입력하세요</button>
   </div>
+</div>
+
+<div class="sheet" id="group" role="dialog" aria-modal="true" aria-labelledby="gTitle" tabindex="-1">
+  <div class="sheet-top">
+    <div class="grab"><span></span></div>
+    <div class="sheet-head">
+      <h2 id="gTitle"></h2>
+      <button class="chip-btn" id="gAdd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>추가</button>
+    </div>
+  </div>
+  <div id="gSummary"></div>
+  <div id="gList"></div>
 </div>
 
 <div class="sheet" id="settings" role="dialog" aria-modal="true" aria-labelledby="setTitle" tabindex="-1">
@@ -432,33 +446,34 @@ function compare(items,refund){
 }
 function renderTiles(items,refund){
   const subs=items.filter(i=>i.cat==='sub'), tr=items.filter(i=>i.cat==='transit');
-  $('#foldBtn').innerHTML=`<span class="fold-l"><span class="fold-ics"><span class="tile-ic" style="--c:${CAT.sub.c}">${icon('sub')}</span><span class="tile-ic" style="--c:${CAT.transit.c}">${icon('transit')}</span></span>구독 · 교통</span>`+
-    `<span class="fold-r">${won(sum(subs)+sum(tr)-refund)}원${CHEV}</span>`;
   $('#tileSub').innerHTML=`<span class="tile-head"><span class="tile-ic" style="--c:${CAT.sub.c}">${icon('sub')}</span>구독</span>`+
-    `<span class="tile-val">${won(sum(subs))}원</span><span class="tile-sub">${subs.length?subs.length+'건':'기록 없음'}</span>`;
+    `<span class="tile-val">${won(sum(subs))}원</span><span class="tile-sub">${subs.length?subs.length+'건 보기':'기록 없음'}${CHEV}</span>`;
   $('#tileTransit').innerHTML=`<span class="tile-head"><span class="tile-ic" style="--c:${CAT.transit.c}">${icon('transit')}</span>교통</span>`+
     `<span class="tile-val">${won(sum(tr)-refund)}원</span>`+
-    (refund?`<span class="tile-sub on">K-패스 환급 −${won(refund)}원</span>`:`<span class="tile-sub">K-패스 환급 입력${CHEV}</span>`);
-  $('#tileTransit').setAttribute('aria-label',`교통 ${won(sum(tr)-refund)}원, K-패스 환급 ${refund?won(refund)+'원 반영됨':'입력하기'}`);
+    `<span class="tile-sub">${tr.length?tr.length+'건':'기록 없음'}${refund?` · <span class="on">환급 −${won(refund)}</span>`:''}${CHEV}</span>`;
+  $('#tileSub').setAttribute('aria-label',`구독 ${won(sum(subs))}원, ${subs.length}건 보기`);
+  $('#tileTransit').setAttribute('aria-label',`교통 ${won(sum(tr)-refund)}원, ${tr.length}건 보기`);
 }
 function emptyHTML(){
   return `<div class="empty"><div class="empty-title">${isCur()?'이번 달':vm+1+'월에는'} 아직 기록이 없어요</div><div class="empty-sub">아래 + 버튼으로 지출을 기록하거나<br>설정에서 백업을 가져올 수 있어요</div></div>`;
 }
-function rowHTML(i){
-  const c=CAT[i.cat]||CAT.etc;
+const GROUPED=new Set(['sub','transit']); /* shown only inside their own tile, not in the daily list */
+function rowHTML(i,subText){
+  const c=CAT[i.cat]||CAT.etc, sub=subText||(i.memo?c.name:'');
   return `<button class="row" data-id="${esc(i.id)}"><span class="bub" style="--c:${c.c}">${icon(c.id)}</span>`+
-    `<span class="row-main"><span class="row-title">${esc(i.memo||c.name)}</span>${i.memo?`<span class="row-sub">${c.name}</span>`:''}</span>`+
+    `<span class="row-main"><span class="row-title">${esc(i.memo||c.name)}</span>${sub?`<span class="row-sub">${sub}</span>`:''}</span>`+
     `<span class="row-amt">${won(i.amount)}원</span></button>`;
 }
-function renderList(items){
+function renderList(all){
   $('#sampleBanner').hidden=!data.items.some(i=>i.ex);
-  const list=$('#list');
-  if(!items.length){list.innerHTML=emptyHTML();return}
+  const list=$('#list'), items=all.filter(i=>!GROUPED.has(i.cat));
+  if(!all.length){list.innerHTML=emptyHTML();return}
+  if(!items.length){list.innerHTML=`<div class="empty"><div class="empty-sub">구독과 교통 말고는 기록이 없어요</div></div>`;return}
   const g={}; items.forEach(i=>(g[i.date]=g[i.date]||[]).push(i));
   list.innerHTML=Object.keys(g).sort().reverse().map(d=>{
     const arr=g[d].sort((a,b)=>b.ts-a.ts), dt=parse(d), diff=dayDiff(d);
     const tag=diff===0?'오늘':diff===1?'어제':'';
-    return `<section class="day"><div class="day-head"><span>${dt.getDate()}일 ${DOW[dt.getDay()]}요일${tag?`<em>${tag}</em>`:''}</span><span class="num">${won(sum(arr))}원</span></div>${arr.map(rowHTML).join('')}</section>`;
+    return `<section class="day"><div class="day-head"><span>${dt.getDate()}일 ${DOW[dt.getDay()]}요일${tag?`<em>${tag}</em>`:''}</span><span class="num">${won(sum(arr))}원</span></div>${arr.map(i=>rowHTML(i)).join('')}</section>`;
   }).join('');
 }
 function renderStats(items,refund){
@@ -519,9 +534,10 @@ $('#sampleClear').onclick=()=>{
 };
 
 /* sheets */
-const scrim=$('#scrim'), sheet=$('#sheet'), settings=$('#settings');
+const scrim=$('#scrim'), sheet=$('#sheet'), settings=$('#settings'), group=$('#group');
 let openEl=null;
 function showSheet(el){
+  if(openEl&&openEl!==el){openEl.classList.remove('open');openEl.style.transform=''}
   openEl=el; el.classList.add('open'); scrim.classList.add('open'); document.body.classList.add('lock');
   el.scrollTop=0; setTimeout(()=>el.focus({preventScroll:true}),60);
 }
@@ -542,7 +558,7 @@ document.querySelectorAll('.sheet-top').forEach(top=>{
 
 /* expense and refund sheet */
 const memo=$('#memo'), saveBtn=$('#saveBtn'), delBtn=$('#delBtn'), amountEl=$('#amount');
-const S={mode:'expense',id:null,amt:'',cat:null,autoCat:false,date:TODAY,memo:'',rkey:''};
+const S={mode:'expense',id:null,amt:'',cat:null,autoCat:false,date:TODAY,memo:'',rkey:'',back:null};
 $('#cats').innerHTML=CATS.map(c=>`<button class="cat" data-cat="${c.id}" style="--c:${c.c}" aria-pressed="false">${icon(c.id)}${c.name}</button>`).join('');
 const KEYS=['1','2','3','4','5','6','7','8','9','00','0','del'];
 $('#pad').innerHTML=KEYS.map(k=>`<button class="key" data-k="${k}"${k==='del'?' aria-label="지우기"':''}>${k==='del'
@@ -571,14 +587,14 @@ function renderSheet(){
   saveBtn.disabled=!(n>0&&S.cat);
   saveBtn.textContent=n<=0?'금액을 입력하세요':!S.cat?'카테고리를 고르세요':S.id?'수정하기':'기록하기';
 }
-function openExpense(item){
-  Object.assign(S,{mode:'expense',autoCat:false},item
+function openExpense(item,back,presetCat){
+  Object.assign(S,{mode:'expense',autoCat:false,back:back||null},item
     ?{id:item.id,amt:String(item.amount),cat:item.cat,date:item.date,memo:item.memo||''}
-    :{id:null,amt:'',cat:null,date:TODAY,memo:''});
+    :{id:null,amt:'',cat:presetCat||null,date:TODAY,memo:''});
   memo.value=S.memo; disarm(); renderSheet(); showSheet(sheet);
 }
-function openRefund(){
-  S.mode='refund'; S.rkey=mkey(vy,vm); S.amt=data.refunds[S.rkey]?String(data.refunds[S.rkey]):'';
+function openRefund(back){
+  S.mode='refund'; S.back=back||null; S.rkey=mkey(vy,vm); S.amt=data.refunds[S.rkey]?String(data.refunds[S.rkey]):'';
   disarm(); renderSheet(); showSheet(sheet);
 }
 function press(k){
@@ -595,7 +611,7 @@ function save(){
   const n=Number(S.amt);
   if(S.mode==='refund'){
     if(!(n>0))return;
-    data.refunds[S.rkey]=n; persist(); hideSheet(); render(); toast('K-패스 환급을 반영했어요'); return;
+    data.refunds[S.rkey]=n; persist(); finish(); toast('K-패스 환급을 반영했어요'); return;
   }
   if(!(n>0&&S.cat))return;
   let it; const wasEdit=!!S.id;
@@ -603,36 +619,53 @@ function save(){
   else{it={id:uid(),amount:n,cat:S.cat,memo:S.memo.trim(),date:S.date,ts:Date.now()};data.items.push(it)}
   persist();
   const d=parse(it.date); vy=d.getFullYear(); vm=d.getMonth(); statSel=null;
-  hideSheet();
-  if(tab!=='list')setTab('list');else render();
-  const row=document.querySelector(`.row[data-id="${CSS.escape(it.id)}"]`);
+  const grouped=GROUPED.has(it.cat);
+  if(S.back||grouped){finish(grouped&&!S.back?it.cat:S.back)}
+  else{hideSheet(); if(tab!=='list')setTab('list');else render()}
+  const row=document.querySelector(`.sheet.open .row[data-id="${CSS.escape(it.id)}"], #list .row[data-id="${CSS.escape(it.id)}"]`);
   if(row){row.classList.add('flash');row.scrollIntoView({block:'nearest',behavior:'smooth'})}
-  toast(wasEdit?'수정했어요':'기록했어요');
+  toast((wasEdit?'수정했어요':'기록했어요')+(grouped&&!S.back?` · ${CAT[it.cat].name}에 담았어요`:''));
 }
 let armT;
 function disarm(){clearTimeout(armT);delBtn.classList.remove('armed');delBtn.textContent='삭제'}
 delBtn.onclick=()=>{
   if(!delBtn.classList.contains('armed')){delBtn.classList.add('armed');delBtn.textContent='정말 삭제';armT=setTimeout(disarm,2500);return}
   if(S.mode==='refund'){
-    const k=S.rkey, prev=data.refunds[k]; delete data.refunds[k]; persist(); hideSheet(); render();
+    const k=S.rkey, prev=data.refunds[k]; delete data.refunds[k]; persist(); finish();
     toast('환급을 지웠어요',()=>{data.refunds[k]=prev;persist();render()}); return;
   }
   const idx=data.items.findIndex(i=>i.id===S.id); if(idx<0)return;
-  const [it]=data.items.splice(idx,1); persist(); hideSheet(); render();
-  toast('삭제했어요',()=>{data.items.push(it);persist();render()});
+  const [it]=data.items.splice(idx,1); persist(); finish();
+  toast('삭제했어요',()=>{data.items.push(it);persist();render();if(openEl===group)renderGroup()});
 };
 $('#addBtn').onclick=()=>openExpense(null);
-$('#tileTransit').onclick=openRefund;
-/* 구독·교통 fold: closed by default, remembered on this device */
-const FOLD_KEY='hanpun.fold';
-function setFold(open,animate){
-  $('#foldBtn').setAttribute('aria-expanded',String(open));
-  const t=$('#tiles'); t.hidden=!open; t.classList.remove('enter');
-  if(open&&animate){void t.offsetWidth;t.classList.add('enter')}
-  try{open?localStorage.setItem(FOLD_KEY,'1'):localStorage.removeItem(FOLD_KEY)}catch(e){}
+/* group sheet: every 구독 or 교통 item of the month, opened from its tile */
+let G=null;
+function finish(back){
+  /* after saving or deleting: return to the group sheet it came from, otherwise close */
+  const to=back||S.back; render();
+  if(to)openGroup(to);else hideSheet();
 }
-$('#foldBtn').onclick=()=>setFold($('#foldBtn').getAttribute('aria-expanded')!=='true',true);
-try{if(localStorage.getItem(FOLD_KEY)==='1')setFold(true,false)}catch(e){}
+function openGroup(id){G=id;renderGroup();showSheet(group)}
+function renderGroup(){
+  const c=CAT[G], items=monthItems(vy,vm).filter(i=>i.cat===G).sort((a,b)=>b.date.localeCompare(a.date)||b.ts-a.ts);
+  const gross=sum(items), refund=G==='transit'?refundOf(vy,vm):0;
+  $('#gTitle').textContent=`${vm+1}월 ${c.name}`;
+  $('#gSummary').innerHTML=`<div class="g-total">${won(gross-refund)}<small>원</small></div><div class="g-meta">${items.length}건${G==='transit'?' · K-패스 환급 반영':''}</div>`+
+    (G==='transit'?`<div class="g-rows" style="margin-top:14px"><div class="g-row"><span>사용 금액</span><span>${won(gross)}원</span></div>`+
+      `<button class="g-row" id="gRefund"><span>K-패스 환급</span><span>${refund?`<span class="good">−${won(refund)}원</span>`:'입력하기'}${CHEV}</span></button></div>`:'');
+  $('#gList').innerHTML=items.length
+    ?items.map(i=>{const d=parse(i.date);return rowHTML(i,`${d.getDate()}일 ${DOW[d.getDay()]}요일`)}).join('')
+    :`<div class="g-empty">${vm+1}월 ${c.name} 기록이 없어요</div>`;
+}
+$('#tileSub').onclick=()=>openGroup('sub');
+$('#tileTransit').onclick=()=>openGroup('transit');
+$('#gAdd').onclick=()=>openExpense(null,G,G);
+group.addEventListener('click',e=>{
+  if(e.target.closest('#gRefund')){openRefund(G);return}
+  const r=e.target.closest('.row'); if(!r)return;
+  const it=data.items.find(i=>i.id===r.dataset.id); if(it)openExpense(it,G);
+});
 $('#pad').addEventListener('click',e=>{const k=e.target.closest('.key');if(k)press(k.dataset.k)});
 $('#cats').addEventListener('click',e=>{const c=e.target.closest('.cat');if(c){S.cat=c.dataset.cat;S.autoCat=false;renderSheet()}});
 $('#dPrev').onclick=()=>shiftDate(-1);
