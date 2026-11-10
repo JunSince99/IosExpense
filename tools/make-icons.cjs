@@ -8,9 +8,9 @@ const out=path.join(__dirname,'..','public','icons');
 const svg=(scale)=>`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 <rect width="512" height="512" fill="#ffffff"/>
 <g transform="translate(256 256) scale(${scale}) translate(-256 -268)">
- <circle cx="206" cy="226" r="86" fill="#3b82f6" opacity=".9"/>
- <circle cx="306" cy="226" r="86" fill="#ef7d3c" opacity=".9"/>
- <circle cx="256" cy="310" r="86" fill="#8b5cf6" opacity=".9"/>
+ <circle cx="206" cy="226" r="86" fill="#1667ff" opacity=".9"/>
+ <circle cx="306" cy="226" r="86" fill="#ff6414" opacity=".9"/>
+ <circle cx="256" cy="310" r="86" fill="#7b2cff" opacity=".9"/>
 </g></svg>`;
 
 (async()=>{

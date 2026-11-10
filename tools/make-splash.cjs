@@ -7,9 +7,9 @@ const path=require('path');
 const BG='#0f1013';
 // the app icon's three coins, cropped to the mark itself (icon viewBox 512, mark spans x 120–392, y 140–396; 6px margin keeps edges unclipped)
 const mark=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="114 134 284 268" width="${124*284/272}" height="${124*268/272}">
- <circle cx="206" cy="226" r="86" fill="#3b82f6" opacity=".9"/>
- <circle cx="306" cy="226" r="86" fill="#ef7d3c" opacity=".9"/>
- <circle cx="256" cy="310" r="86" fill="#8b5cf6" opacity=".9"/>
+ <circle cx="206" cy="226" r="86" fill="#1667ff" opacity=".9"/>
+ <circle cx="306" cy="226" r="86" fill="#ff6414" opacity=".9"/>
+ <circle cx="256" cy="310" r="86" fill="#7b2cff" opacity=".9"/>
 </svg>`;
 const shots=[{file:'iphone-16-pro-portrait.png',w:402,h:874,dpr:3}];
 (async()=>{
