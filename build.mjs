@@ -30,6 +30,7 @@ const html = `<!doctype html>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=4">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png?v=4">
+<link rel="apple-touch-startup-image" media="(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash/iphone-16-pro-portrait.png">
 <style>
 :root{color-scheme:light;padding-top:env(safe-area-inset-top,0px)}
 *,*::before,*::after{box-sizing:border-box}
