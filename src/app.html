@@ -4,7 +4,7 @@
 /* Layout: one phone-width column, sticky month bar on top, tab bar with a center add button, bottom sheets for input and settings. */
 :root{
   --bg:#ffffff; --sheet:#ffffff; --fill:#f2f3f6; --fill-2:#e5e7ec; --seg-on:#ffffff;
-  --tint:10%; --tint-ic:22%;
+  --tint:7%; --tint-ic:16%;
   --ink:#15171c; --ink-2:#6c7180; --ink-3:#a8acb7; --line:#eceef2;
   --good:#18945f; --bad:#df4f3a; --scrim:rgba(12,14,20,.42);
   --font:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;
@@ -13,12 +13,12 @@
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#0f1013; --sheet:#18191d; --fill:#24262c; --fill-2:#30333a; --seg-on:#3a3d45;
-  --tint:18%; --tint-ic:32%;
+  --tint:13%; --tint-ic:24%;
   --ink:#f2f3f5; --ink-2:#989dab; --ink-3:#5f6470; --line:#212329;
   --good:#3cc58e; --bad:#ff7b65; --scrim:rgba(0,0,0,.6); color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0f1013; --sheet:#18191d; --fill:#24262c; --fill-2:#30333a; --seg-on:#3a3d45;
-  --tint:18%; --tint-ic:32%;
+  --tint:13%; --tint-ic:24%;
   --ink:#f2f3f5; --ink-2:#989dab; --ink-3:#5f6470; --line:#212329;
   --good:#3cc58e; --bad:#ff7b65; --scrim:rgba(0,0,0,.6); color-scheme:dark}
 
@@ -60,7 +60,7 @@ svg{display:block}
 .good{color:var(--good)}.bad{color:var(--bad)}
 .tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:16px}
 .tile{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:0;padding:12px 14px;border-radius:14px;background:color-mix(in srgb,var(--c) var(--tint),var(--bg));text-align:left;transition:transform .15s}
-#tileSub{--c:#7b2cff}#tileTransit{--c:#1667ff}
+#tileSub{--c:#8b5cf6}#tileTransit{--c:#3b82f6}
 button.tile:active{transform:scale(.97)}
 .tile-head{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:500;color:var(--ink-2)}
 .tile-ic{width:22px;height:22px;display:grid;place-items:center;border-radius:50%;background:color-mix(in srgb,var(--c) var(--tint-ic),var(--bg));color:var(--c)}
@@ -88,7 +88,7 @@ button.tile:active{transform:scale(.97)}
 .row.flash{animation:flash 1.4s var(--ease)}
 @keyframes flash{0%,35%{background:var(--fill-2)}}
 .bub{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;
-  background:color-mix(in srgb,var(--c) 20%,var(--bg));color:var(--c)}
+  background:color-mix(in srgb,var(--c) 15%,var(--bg));color:var(--c)}
 .bub svg{width:20px;height:20px}
 .row-main{display:flex;flex-direction:column;gap:2px;min-width:0}
 .row-title{font-size:15.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -198,7 +198,7 @@ button.g-row:active{opacity:.6}
 .cat{height:40px;display:flex;align-items:center;justify-content:center;gap:5px;border-radius:12px;
   background:var(--fill);font-size:14px;font-weight:500;color:var(--ink-2);transition:background .15s,box-shadow .15s,color .15s}
 .cat svg{width:16px;height:16px;color:var(--c)}
-.cat.on{background:color-mix(in srgb,var(--c) 20%,var(--sheet));box-shadow:inset 0 0 0 1.5px var(--c);color:var(--ink);font-weight:600}
+.cat.on{background:color-mix(in srgb,var(--c) 16%,var(--sheet));box-shadow:inset 0 0 0 1.5px var(--c);color:var(--ink);font-weight:600}
 .memo{width:100%;height:44px;padding:0 14px;border:0;border-radius:12px;background:var(--fill);outline:none;
   font:inherit;font-size:16px;color:var(--ink);-webkit-user-select:text;user-select:text}
 .memo::placeholder{color:var(--ink-3)}
@@ -387,12 +387,12 @@ const IC={
 const icon=id=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[id]||IC.etc}</svg>`;
 const CHEV='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>';
 const CATS=[
-  {id:'food',name:'식비',c:'#ff6414'},{id:'clothing',name:'의류',c:'#c8681c'},
-  {id:'transit',name:'교통',c:'#1667ff'},{id:'sub',name:'구독',c:'#7b2cff'},
-  {id:'telecom',name:'통신',c:'#00a9c9'},{id:'shop',name:'쇼핑',c:'#ff2a78'},
-  {id:'game',name:'게임',c:'#00b35c'},{id:'leisure',name:'여가',c:'#ffaa00'},
-  {id:'edu',name:'교육',c:'#4338ff'},{id:'living',name:'생활',c:'#5fae12'},
-  {id:'health',name:'의료',c:'#ff3030'},{id:'etc',name:'기타',c:'#7d8496'}];
+  {id:'food',name:'식비',c:'#ef7d3c'},{id:'clothing',name:'의류',c:'#a3774c'},
+  {id:'transit',name:'교통',c:'#3b82f6'},{id:'sub',name:'구독',c:'#8b5cf6'},
+  {id:'telecom',name:'통신',c:'#0ea5b7'},{id:'shop',name:'쇼핑',c:'#e0508a'},
+  {id:'game',name:'게임',c:'#22a06b'},{id:'leisure',name:'여가',c:'#d49a06'},
+  {id:'edu',name:'교육',c:'#6366f1'},{id:'living',name:'생활',c:'#7f9a3a'},
+  {id:'health',name:'의료',c:'#e04848'},{id:'etc',name:'기타',c:'#8a90a0'}];
 const CAT=Object.fromEntries(CATS.map(c=>[c.id,c]));
 const ALIAS={transport:'transit',transportation:'transit',subscription:'sub',subscriptions:'sub',education:'edu',
   gaming:'game',games:'game',clothes:'clothing',apparel:'clothing',fashion:'clothing',cafe:'food',shopping:'shop',culture:'leisure',entertainment:'leisure',hobby:'leisure',

@@ -28,9 +28,9 @@ const html = `<!doctype html>
 <meta name="theme-color" content="#0f1013" media="(prefers-color-scheme: dark)">
 <meta name="format-detection" content="telephone=no">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=5">
-<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png?v=5">
-<link rel="apple-touch-startup-image" media="(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash/iphone-16-pro-portrait.png?v=2">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=6">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png?v=6">
+<link rel="apple-touch-startup-image" media="(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash/iphone-16-pro-portrait.png?v=3">
 <style>
 :root{color-scheme:light;padding-top:env(safe-area-inset-top,0px)}
 *,*::before,*::after{box-sizing:border-box}
