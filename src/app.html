@@ -4,6 +4,7 @@
 /* Layout: one phone-width column, sticky month bar on top, tab bar with a center add button, bottom sheets for input and settings. */
 :root{
   --bg:#ffffff; --sheet:#ffffff; --fill:#f2f3f6; --fill-2:#e5e7ec; --seg-on:#ffffff;
+  --card:#ffffff; --card-shadow:0 0 0 1px rgba(20,24,32,.05),0 2px 10px -2px rgba(20,24,32,.10);
   --ink:#15171c; --ink-2:#6c7180; --ink-3:#a8acb7; --line:#eceef2;
   --good:#18945f; --bad:#df4f3a; --scrim:rgba(12,14,20,.42);
   --font:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;
@@ -12,10 +13,12 @@
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#0f1013; --sheet:#18191d; --fill:#24262c; --fill-2:#30333a; --seg-on:#3a3d45;
+  --card:#24262c; --card-shadow:none;
   --ink:#f2f3f5; --ink-2:#989dab; --ink-3:#5f6470; --line:#212329;
   --good:#3cc58e; --bad:#ff7b65; --scrim:rgba(0,0,0,.6); color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0f1013; --sheet:#18191d; --fill:#24262c; --fill-2:#30333a; --seg-on:#3a3d45;
+  --card:#24262c; --card-shadow:none;
   --ink:#f2f3f5; --ink-2:#989dab; --ink-3:#5f6470; --line:#212329;
   --good:#3cc58e; --bad:#ff7b65; --scrim:rgba(0,0,0,.6); color-scheme:dark}
 
@@ -56,10 +59,10 @@ svg{display:block}
 .hero-sub b{font-weight:600;font-variant-numeric:tabular-nums}
 .good{color:var(--good)}.bad{color:var(--bad)}
 .tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:16px}
-.tile{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:0;padding:12px 14px;border-radius:14px;background:var(--fill);text-align:left;transition:transform .15s}
+.tile{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:0;padding:12px 14px;border-radius:14px;background:var(--card);box-shadow:var(--card-shadow);text-align:left;transition:transform .15s}
 button.tile:active{transform:scale(.97)}
 .tile-head{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:500;color:var(--ink-2)}
-.tile-ic{width:22px;height:22px;display:grid;place-items:center;border-radius:50%;background:color-mix(in srgb,var(--c) 18%,var(--fill));color:var(--c)}
+.tile-ic{width:22px;height:22px;display:grid;place-items:center;border-radius:50%;background:color-mix(in srgb,var(--c) 15%,var(--card));color:var(--c)}
 .tile-ic svg{width:14px;height:14px}
 .tile-val{margin-top:6px;font-size:17px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
 .tile-sub{display:flex;align-items:center;gap:1px;font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -98,9 +101,9 @@ button.tile:active{transform:scale(.97)}
 /* stats */
 #stats{display:flex;flex-direction:column;gap:30px}
 .sec h3,.sgroup h3{margin:0 0 12px;font-size:13px;font-weight:600;color:var(--ink-2)}
-.cells{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding-block:14px;border-radius:16px;background:var(--fill)}
+.cells{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding-block:14px;border-radius:16px;background:var(--card);box-shadow:var(--card-shadow)}
 .cell{display:flex;flex-direction:column;gap:3px;min-width:0;padding:0 12px}
-.cell+.cell{border-left:1px solid var(--fill-2)}
+.cell+.cell{border-left:1px solid var(--line)}
 .cell-label{font-size:12px;color:var(--ink-2)}
 .cell-val{font-size:16px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cell-sub{font-size:11.5px;color:var(--ink-3);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
