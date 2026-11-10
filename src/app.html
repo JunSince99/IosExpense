@@ -60,7 +60,7 @@ svg{display:block}
 .good{color:var(--good)}.bad{color:var(--bad)}
 .tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:16px}
 .tile{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:0;padding:12px 14px;border-radius:14px;background:color-mix(in srgb,var(--c) var(--tint),var(--bg));text-align:left;transition:transform .15s}
-#tileSub{--c:#e0508a}#tileTransit{--c:#2a9df4}
+#tileSub{--c:#f2604f}#tileTransit{--c:#2a9df4}
 button.tile:active{transform:scale(.97)}
 .tile-head{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:500;color:var(--ink-2)}
 .tile-ic{width:22px;height:22px;display:grid;place-items:center;border-radius:50%;background:color-mix(in srgb,var(--c) var(--tint-ic),var(--bg));color:var(--c)}
@@ -388,8 +388,8 @@ const icon=id=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
 const CHEV='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>';
 const CATS=[
   {id:'food',name:'식비',c:'#ef7d3c'},{id:'clothing',name:'의류',c:'#a3774c'},
-  {id:'transit',name:'교통',c:'#2a9df4'},{id:'sub',name:'구독',c:'#e0508a'},
-  {id:'telecom',name:'통신',c:'#0ea5b7'},{id:'shop',name:'쇼핑',c:'#8b5cf6'},
+  {id:'transit',name:'교통',c:'#2a9df4'},{id:'sub',name:'구독',c:'#f2604f'},
+  {id:'telecom',name:'통신',c:'#0ea5b7'},{id:'shop',name:'쇼핑',c:'#e0508a'},
   {id:'game',name:'게임',c:'#22a06b'},{id:'leisure',name:'여가',c:'#d49a06'},
   {id:'edu',name:'교육',c:'#6366f1'},{id:'living',name:'생활',c:'#7f9a3a'},
   {id:'health',name:'의료',c:'#e04848'},{id:'etc',name:'기타',c:'#8a90a0'}];
