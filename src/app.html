@@ -55,11 +55,22 @@ svg{display:block}
 .hero-sub{margin-top:8px;font-size:13.5px;color:var(--ink-2)}
 .hero-sub b{font-weight:600;font-variant-numeric:tabular-nums}
 .good{color:var(--good)}.bad{color:var(--bad)}
-.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:16px}
-.tile{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:0;padding:12px 14px;border-radius:14px;background:var(--fill);text-align:left;transition:transform .15s}
+.fold{margin-top:16px;border-radius:16px;background:var(--fill)}
+.fold-head{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:13px 14px;border-radius:16px;text-align:left}
+.fold-head:active{opacity:.7}
+.fold-l{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:var(--ink-2)}
+.fold-ics{display:flex}
+.fold-ics .tile-ic{box-shadow:0 0 0 2px var(--fill)}
+.fold-ics .tile-ic+.tile-ic{margin-left:-6px}
+.fold-r{display:flex;align-items:center;gap:4px;font-size:15px;font-weight:700;font-variant-numeric:tabular-nums}
+.fold-r svg{width:18px;height:18px;color:var(--ink-3);transform:rotate(90deg);transition:transform .25s var(--ease)}
+.fold-head[aria-expanded="true"] .fold-r svg{transform:rotate(-90deg)}
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:0 8px 8px}
+.tiles.enter{animation:enter .25s var(--ease)}
+.tile{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:0;padding:12px 14px;border-radius:12px;background:var(--bg);text-align:left;transition:transform .15s}
 button.tile:active{transform:scale(.98)}
 .tile-head{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:500;color:var(--ink-2)}
-.tile-ic{width:22px;height:22px;display:grid;place-items:center;border-radius:50%;background:color-mix(in srgb,var(--c) 18%,var(--fill));color:var(--c)}
+.tile-ic{width:22px;height:22px;display:grid;place-items:center;border-radius:50%;background:color-mix(in srgb,var(--c) 18%,var(--bg));color:var(--c)}
 .tile-ic svg{width:14px;height:14px}
 .tile-val{margin-top:6px;font-size:17px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
 .tile-sub{display:flex;align-items:center;gap:1px;font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -242,9 +253,12 @@ button.tile:active{transform:scale(.98)}
     <div class="hero-label" id="heroLabel"></div>
     <div class="hero-total" id="heroTotal"></div>
     <div class="hero-sub" id="heroSub"></div>
-    <div class="tiles">
-      <div class="tile" id="tileSub"></div>
-      <button class="tile" id="tileTransit"></button>
+    <div class="fold">
+      <button class="fold-head" id="foldBtn" aria-expanded="false" aria-controls="tiles"></button>
+      <div class="tiles" id="tiles" hidden>
+        <div class="tile" id="tileSub"></div>
+        <button class="tile" id="tileTransit"></button>
+      </div>
     </div>
   </div>
   <section class="view" id="view-list">
@@ -418,6 +432,8 @@ function compare(items,refund){
 }
 function renderTiles(items,refund){
   const subs=items.filter(i=>i.cat==='sub'), tr=items.filter(i=>i.cat==='transit');
+  $('#foldBtn').innerHTML=`<span class="fold-l"><span class="fold-ics"><span class="tile-ic" style="--c:${CAT.sub.c}">${icon('sub')}</span><span class="tile-ic" style="--c:${CAT.transit.c}">${icon('transit')}</span></span>구독 · 교통</span>`+
+    `<span class="fold-r">${won(sum(subs)+sum(tr)-refund)}원${CHEV}</span>`;
   $('#tileSub').innerHTML=`<span class="tile-head"><span class="tile-ic" style="--c:${CAT.sub.c}">${icon('sub')}</span>구독</span>`+
     `<span class="tile-val">${won(sum(subs))}원</span><span class="tile-sub">${subs.length?subs.length+'건':'기록 없음'}</span>`;
   $('#tileTransit').innerHTML=`<span class="tile-head"><span class="tile-ic" style="--c:${CAT.transit.c}">${icon('transit')}</span>교통</span>`+
@@ -607,6 +623,16 @@ delBtn.onclick=()=>{
 };
 $('#addBtn').onclick=()=>openExpense(null);
 $('#tileTransit').onclick=openRefund;
+/* 구독·교통 fold: closed by default, remembered on this device */
+const FOLD_KEY='hanpun.fold';
+function setFold(open,animate){
+  $('#foldBtn').setAttribute('aria-expanded',String(open));
+  const t=$('#tiles'); t.hidden=!open; t.classList.remove('enter');
+  if(open&&animate){void t.offsetWidth;t.classList.add('enter')}
+  try{open?localStorage.setItem(FOLD_KEY,'1'):localStorage.removeItem(FOLD_KEY)}catch(e){}
+}
+$('#foldBtn').onclick=()=>setFold($('#foldBtn').getAttribute('aria-expanded')!=='true',true);
+try{if(localStorage.getItem(FOLD_KEY)==='1')setFold(true,false)}catch(e){}
 $('#pad').addEventListener('click',e=>{const k=e.target.closest('.key');if(k)press(k.dataset.k)});
 $('#cats').addEventListener('click',e=>{const c=e.target.closest('.cat');if(c){S.cat=c.dataset.cat;S.autoCat=false;renderSheet()}});
 $('#dPrev').onclick=()=>shiftDate(-1);
